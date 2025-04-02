@@ -29,40 +29,32 @@ def test_daily_mean_integers():
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_mean(test_input), test_result)
 
-def test_daily_max_zeros():
-
-    test_input = np.array([[0, 0],
-                           [0, 0],
-                           [0, 0]])
-    test_result = np.array([0, 0])
-
-    npt.assert_array_equal(daily_max(test_input), test_result)
-
 def test_daily_max_integers():
     
-    test_input = np.array([[1, 2],
-                           [3, 4],
-                           [5, 6]])
-    test_result = np.array([5, 6])
+    test_input = np.array([[1, 2, 10],
+                           [3, 40, 12],
+                           [5, 6, 13]])
+    test_result = np.array([5, 40, 13])
 
     npt.assert_array_equal(daily_max(test_input), test_result)
 
-def test_daily_min_zeros():
-    
-    test_input = np.array([[0, 0],
-                           [0, 0],
-                           [0, 0]])
-    test_result = np.array([0, 0])
-
-    npt.assert_array_equal(daily_min(test_input), test_result)
 
 def test_daily_min_integers(): 
     
-    test_daily_min_integers = np.array([[1, 2],
-                                        [3, 4],
-                                        [5, 6]])
-    test_result = np.array([1, 2]) 
+    test_daily_min_integers = np.array([[1, 2, 9],
+                                        [3, 4, 1],
+                                        [5, 6, 8]])
+    test_result = np.array([1, 2, 1]) 
 
     npt.assert_array_equal(daily_min(test_daily_min_integers), test_result)
+
+import pytest
+from inflammation.models import daily_min
+...
+def test_daily_min_string():
+    """Test for TypeError when passing strings"""
+
+    with pytest.raises(TypeError): #Try ValueError
+        error_expected = daily_min([['Hello', 'there'], ['General', 'Kenobi']])
 
 
